@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Adventní kalendář</title>
+  <style>
+    .calendar {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .door {
+      width: 55px;
+      height: 55px;
+      border: 3px solid #000;
+      margin: 9px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="calendar">
+  <div class="door" onclick="openDoor(1)">1</div>
+  <div class="door" onclick="openDoor(2)">2</div>
+  <div class="door" onclick="openDoor(3)">3</div>
+  <!-- Pokračuj až do 24 dveří -->
+</div>
+
+<div class="message" id="message"></div>
+
+<script>
+  function openDoor(day) {
+    let message = getMessageForDay(day);
+    document.getElementById('message').innerText = message;
+  }
+
+  function getMessageForDay(day) {
+    // Zde můžeš vytvořit logiku pro vzkazy pro jednotlivé dny
+    // Toto je jen příklad
+    let messages = {
+      1: "Dnes je první den adventu!",
+      2: "Najdi dneska radost ve svém srdci.",
+      3: "Najdi dneska radost ve své srdci.",
+      // Pokračuj až do 24 dne
+    };
+
+    return messages[day] || "Žádná zpráva pro tento den.";
+  }
+</script>
+
+</body>
+</html>
