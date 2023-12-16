@@ -1,96 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Adventní kalendář</title>
+  <title>Moderní Klikací Kalendář</title>
   <style>
-    /* Středování obsahu */
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+    /* CSS styly */
+    .calendar {
+      width: 300px;
+      margin: 20px auto;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 10px;
       font-family: Arial, sans-serif;
     }
 
-    /* Úpravy pro kalendář */
-    .calendar {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .door {
-      width: 55px;
-      height: 55px;
-      border: 3px solid #000;
-      margin: 9px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    /* Úpravy pro překvapení */
-    #surpriseText {
+    .header {
       text-align: center;
-      margin-top: 20px;
-      font-weight: bold;
+      margin-bottom: 10px;
     }
 
-    /* Styl pro tlačítko */
-    .back-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .day {
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #eee;
       cursor: pointer;
-      text-decoration: none;
-      color: #333;
-      border-radius: 5px;
     }
 
-    .back-button:hover {
-      background-color: #e0e0e0;
+    /* Styly pro překvapení */
+    .day.clicked {
+      background-color: #ffcc00;
+      color: #fff;
+      border: 1px solid #ffcc00;
+      border-radius: 50%;
+      transition: all 0.3s ease;
     }
   </style>
 </head>
 <body>
 
-<!-- Adventní kalendář -->
 <div class="calendar">
-  <a href="prekvapeni.html?id=1" class="door">1</a>
-  <a href="prekvapeni.html?id=2" class="door">2</a>
-  <a href="prekvapeni.html?id=3" class="door">3</a>
-  <!-- Pokračuj až do 24 dveří -->
-</div>
-
-<!-- Překvapení -->
-<div>
-  <h1>Překvapení!</h1>
-  <p id="surpriseText">Zde se zobrazí překvapení pro daný den.</p>
-  <a href="adventni_kalendar.html" class="back-button">Zpět na kalendář</a>
+  <div class="header">
+    <h2>Prosinec 2023</h2>
+  </div>
+  <div class="days">
+    <div class="day">1</div>
+    <!-- ... Další dny kalendáře -->
+    <div class="day">31</div>
+  </div>
 </div>
 
 <script>
-  // Získání informace z URL a zobrazení příslušného překvapení
-  const urlParams = new URLSearchParams(window.location.search);
-  const dayId = urlParams.get('id');
+  // JavaScript
+  const days = document.querySelectorAll('.day');
 
-  let surpriseText = getSurpriseForDay(dayId);
-  document.getElementById('surpriseText').innerText = surpriseText;
-
-  function getSurpriseForDay(day) {
-    // Zde můžeš vytvořit překvapení pro jednotlivé dny
-    // Toto je jen příklad
-    let surprises = {
-      '1': "moc prdíš",
-      '2': "moc kadíš",
-      '3': "jez víc",
-      // Pokračuj až do 24 dne
-    };
-
-    return surprises[day] || "Pro tento den nemáme žádné překvapení.";
-  }
+  days.forEach(day => {
+    day.addEventListener('click', () => {
+      day.classList.toggle('clicked');
+    });
+  });
 </script>
 
 </body>
