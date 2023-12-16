@@ -10,11 +10,27 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      text-align: center; /* Zarovnání textu na střed */
     }
 
-    div {
-      max-width: 600px; /* Maximální šířka pro obsah */
+    /* Styl pro tlačítko */
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+      border-radius: 5px;
+    }
+
+    .back-button:hover {
+      background-color: #e0e0e0;
+    }
+
+    /* Zarovnání textu s překvapením */
+    #surpriseText {
+      text-align: center;
     }
   </style>
 </head>
@@ -23,6 +39,7 @@
 <div>
   <h1>Překvapení!</h1>
   <p id="surpriseText">Zde se zobrazí překvapení pro daný den.</p>
+  <a href="adventni_kalendar.html" class="back-button">Zpět na kalendář</a>
 </div>
 
 <script>
