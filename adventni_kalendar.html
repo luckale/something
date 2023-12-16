@@ -3,17 +3,15 @@
 <head>
   <title>Adventní kalendář</title>
   <style>
-    /* Středování obsahu */
+    /* Středování kalendáře */
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: Arial, sans-serif;
     }
 
-    /* Úpravy pro kalendář */
     .calendar {
       display: flex;
       flex-wrap: wrap;
@@ -30,33 +28,14 @@
       cursor: pointer;
     }
 
-    /* Úpravy pro překvapení */
-    #surpriseText {
-      text-align: center;
+    .message {
       margin-top: 20px;
       font-weight: bold;
-    }
-
-    /* Styl pro tlačítko */
-    .back-button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #f0f0f0;
-      border: 1px solid #ccc;
-      cursor: pointer;
-      text-decoration: none;
-      color: #333;
-      border-radius: 5px;
-    }
-
-    .back-button:hover {
-      background-color: #e0e0e0;
     }
   </style>
 </head>
 <body>
 
-<!-- Adventní kalendář -->
 <div class="calendar">
   <a href="prekvapeni.html?id=1" class="door">1</a>
   <a href="prekvapeni.html?id=2" class="door">2</a>
@@ -64,32 +43,25 @@
   <!-- Pokračuj až do 24 dveří -->
 </div>
 
-<!-- Překvapení -->
-<div>
-  <h1>Překvapení!</h1>
-  <p id="surpriseText">Zde se zobrazí překvapení pro daný den.</p>
-  <a href="adventni_kalendar.html" class="back-button">Zpět na kalendář</a>
-</div>
+<div class="message" id="message"></div>
 
 <script>
-  // Získání informace z URL a zobrazení příslušného překvapení
-  const urlParams = new URLSearchParams(window.location.search);
-  const dayId = urlParams.get('id');
+  function openDoor(day) {
+    let message = getMessageForDay(day);
+    document.getElementById('message').innerText = message;
+  }
 
-  let surpriseText = getSurpriseForDay(dayId);
-  document.getElementById('surpriseText').innerText = surpriseText;
-
-  function getSurpriseForDay(day) {
-    // Zde můžeš vytvořit překvapení pro jednotlivé dny
+  function getMessageForDay(day) {
+    // Zde můžeš vytvořit logiku pro vzkazy pro jednotlivé dny
     // Toto je jen příklad
-    let surprises = {
-      '1': "moc prdíš",
-      '2': "moc kadíš",
-      '3': "jez víc",
+    let messages = {
+      1: "Dnes je první den adventu!",
+      2: "Najdi dneska radost ve svém srdci.",
+      3: "Najdi dneska radost ve své srdci.",
       // Pokračuj až do 24 dne
     };
 
-    return surprises[day] || "Pro tento den nemáme žádné překvapení.";
+    return messages[day] || "Žádná zpráva pro tento den.";
   }
 </script>
 
