@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Překvapení!</title>
+</head>
+<body>
+
+<div>
+  <h1>Překvapení!</h1>
+  <p id="surpriseText">Zde se zobrazí překvapení pro daný den.</p>
+</div>
+
+<script>
+  // Získání informace z URL a zobrazení příslušného překvapení
+  const urlParams = new URLSearchParams(window.location.search);
+  const dayId = urlParams.get('id');
+
+  let surpriseText = getSurpriseForDay(dayId);
+  document.getElementById('surpriseText').innerText = surpriseText;
+
+  function getSurpriseForDay(day) {
+    // Zde můžeš vytvořit překvapení pro jednotlivé dny
+    // Toto je jen příklad
+    let surprises = {
+      '1': "Gratulujeme, našli jste první dárek!",
+      '2': "Dostáváte speciální slevu na nákupy!",
+      '3': "Získejte zdarma malou sladkost při nákupu!",
+      // Pokračuj až do 24 dne
+    };
+
+    return surprises[day] || "Pro tento den nemáme žádné překvapení.";
+  }
+</script>
+
+</body>
+</html>
