@@ -32,10 +32,36 @@
       margin-top: 20px;
       font-weight: bold;
     }
+
+    /* Středování obsahu na stránce s překvapením */
+    .surprise-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Styl pro tlačítko zpět */
+    .back-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      text-decoration: none;
+      color: #333;
+      border-radius: 5px;
+    }
+
+    .back-button:hover {
+      background-color: #e0e0e0;
+    }
   </style>
 </head>
 <body>
 
+<!-- Adventní kalendář -->
 <div class="calendar">
   <a href="prekvapeni.html?id=1" class="door">1</a>
   <a href="prekvapeni.html?id=2" class="door">2</a>
@@ -43,25 +69,32 @@
   <!-- Pokračuj až do 24 dveří -->
 </div>
 
-<div class="message" id="message"></div>
+<!-- Stránka s překvapením -->
+<div class="surprise-container">
+  <h1>Překvapení!</h1>
+  <p id="surpriseText">Zde se zobrazí překvapení pro daný den.</p>
+  <a href="adventni_kalendar.html" class="back-button">Zpět na kalendář</a>
+</div>
 
 <script>
-  function openDoor(day) {
-    let message = getMessageForDay(day);
-    document.getElementById('message').innerText = message;
-  }
+  // Získání informace z URL a zobrazení příslušného překvapení
+  const urlParams = new URLSearchParams(window.location.search);
+  const dayId = urlParams.get('id');
 
-  function getMessageForDay(day) {
-    // Zde můžeš vytvořit logiku pro vzkazy pro jednotlivé dny
+  let surpriseText = getSurpriseForDay(dayId);
+  document.getElementById('surpriseText').innerText = surpriseText;
+
+  function getSurpriseForDay(day) {
+    // Zde můžeš vytvořit překvapení pro jednotlivé dny
     // Toto je jen příklad
-    let messages = {
-      1: "Dnes je první den adventu!",
-      2: "Najdi dneska radost ve svém srdci.",
-      3: "Najdi dneska radost ve své srdci.",
-       Pokračuj až do 24 dne
+    let surprises = {
+      '1': "moc prdíš",
+      '2': "moc kadíš",
+      '3': "jez víc",
+      // Pokračuj až do 24 dne
     };
 
-    return messages[day] || "Žádná zpráva pro tento den.";
+    return surprises[day] || "Pro tento den nemáme žádné překvapení.";
   }
 </script>
 
