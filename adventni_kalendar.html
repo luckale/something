@@ -3,13 +3,14 @@
 <head>
   <title>Adventní kalendář</title>
   <style>
-    /* Středování kalendáře */
+    /* Úprava pro středování kalendáře */
     body {
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
+      font-family: Arial, sans-serif;
     }
 
     .calendar {
@@ -26,23 +27,19 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
+      font-size: 18px;
+      text-decoration: none;
+      color: #000;
+      text-align: center;
     }
 
     .message {
       margin-top: 20px;
       font-weight: bold;
+      text-align: center;
     }
 
-    /* Středování obsahu na stránce s překvapením */
-    .surprise-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    /* Styl pro tlačítko zpět */
+    /* Styl pro tlačítko */
     .back-button {
       margin-top: 20px;
       padding: 10px 20px;
@@ -52,6 +49,9 @@
       text-decoration: none;
       color: #333;
       border-radius: 5px;
+      display: block;
+      width: fit-content;
+      margin: 20px auto;
     }
 
     .back-button:hover {
@@ -61,7 +61,6 @@
 </head>
 <body>
 
-<!-- Adventní kalendář -->
 <div class="calendar">
   <a href="prekvapeni.html?id=1" class="door">1</a>
   <a href="prekvapeni.html?id=2" class="door">2</a>
@@ -69,32 +68,25 @@
   <!-- Pokračuj až do 24 dveří -->
 </div>
 
-<!-- Stránka s překvapením -->
-<div class="surprise-container">
-  <h1>Překvapení!</h1>
-  <p id="surpriseText">Zde se zobrazí překvapení pro daný den.</p>
-  <a href="adventni_kalendar.html" class="back-button">Zpět na kalendář</a>
-</div>
+<div class="message" id="message"></div>
+
+<a href="adventni_kalendar.html" class="back-button">Zpět na kalendář</a>
 
 <script>
-  // Získání informace z URL a zobrazení příslušného překvapení
-  const urlParams = new URLSearchParams(window.location.search);
-  const dayId = urlParams.get('id');
+  function openDoor(day) {
+    let message = getMessageForDay(day);
+    document.getElementById('message').innerText = message;
+  }
 
-  let surpriseText = getSurpriseForDay(dayId);
-  document.getElementById('surpriseText').innerText = surpriseText;
-
-  function getSurpriseForDay(day) {
-    // Zde můžeš vytvořit překvapení pro jednotlivé dny
-    // Toto je jen příklad
-    let surprises = {
-      '1': "moc prdíš!",
-      '2': "moc kadíš!",
-      '3': "jez víc!",
+  function getMessageForDay(day) {
+    let messages = {
+      1: "moc prdíš",
+      2: "moc kadíš",
+      3: "jez víc",
       // Pokračuj až do 24 dne
     };
 
-    return surprises[day] || "Pro tento den nemáme žádné překvapení.";
+    return messages[day] || "Pro tento den nemáme žádné překvapení.";
   }
 </script>
 
